@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tinybits · Wellness in tiny bits</title>
+<meta name="description" content="Tinybits is a wellness blog about feeling better one small habit at a time. Recipes, movement, rest, and time outside.">
+<style>
+:root{
+  --paper:#FFFFFF;
+  --butter:#FBEFC7;
+  --lemon:#F5D96E;
+  --peach:#FDE4CB;
+  --orange:#F6B26B;
+  --aqua:#C9EBE8;
+  --sage:#BDDBB1;
+  --leaf:#8CBF7F;
+  --teal:#7FA868;
+  --teal-deep:#4F7A3D;
+  --ink:#333B33;
+  --ink-soft:#5F6B5F;
+  --radius-lg:32px;
+  --maxw:1100px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.65;
+  font-size:17px;
+  overflow-x:hidden;
+}
+h1,h2,h3{
+  font-family:Arial,Helvetica,sans-serif;
+  font-weight:700;
+  line-height:1.12;
+  letter-spacing:-0.02em;
+}
+img{max-width:100%;display:block}
+a{color:var(--teal-deep)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(51,59,51,.08);
+}
+.nav-inner{
+  max-width:var(--maxw);margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.logo{
+  font-weight:800;font-size:1.4rem;color:var(--ink);letter-spacing:-0.02em;
+  text-decoration:none;display:flex;align-items:center;gap:9px;
+}
+.logo svg{flex:none}
+.nav-links{display:flex;gap:26px;list-style:none;align-items:center}
+.nav-links a{
+  text-decoration:none;color:var(--ink-soft);font-weight:700;font-size:.93rem;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--teal-deep)}
+.btn{
+  display:inline-block;background:var(--teal);color:#fff;
+  font-weight:700;text-decoration:none;
+  padding:12px 26px;border-radius:999px;border:none;cursor:pointer;
+  font-size:.95rem;font-family:Arial,Helvetica,sans-serif;
+  transition:transform .2s,background .2s;
+}
+.btn:hover{background:var(--teal-deep);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--teal-deep);box-shadow:inset 0 0 0 2px var(--teal)}
+.btn.ghost:hover{background:var(--butter)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:72px 0 110px;overflow:hidden}
+.hero-grid{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--teal-deep);background:var(--butter);
+  padding:7px 16px;border-radius:999px;margin-bottom:22px;
+}
+.hero h1{font-size:clamp(2.6rem,5.4vw,4rem);margin-bottom:22px}
+.hero h1 .swash{
+  font-style:italic;color:var(--teal-deep);
+  position:relative;white-space:nowrap;
+}
+.hero h1 .swash::after{
+  content:"";position:absolute;left:0;right:0;bottom:.03em;height:.34em;
+  background:var(--lemon);z-index:-1;border-radius:4px;opacity:.75;
+}
+.hero p.lede{font-size:1.13rem;color:var(--ink-soft);max-width:46ch;margin-bottom:32px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+
+.hero-art{position:relative}
+.hero-photo{
+  position:relative;width:100%;
+  aspect-ratio:4/5;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  background:linear-gradient(160deg,var(--butter),var(--peach));
+  box-shadow:0 24px 60px rgba(246,178,107,.28);
+}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+/* SWAP: replace the placeholder <div class="hero-placeholder"> below with
+   <img src="images/hero.jpg" alt="..."> once the hero photo is added */
+.hero-placeholder{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:10px;
+  color:var(--teal-deep);font-weight:700;text-align:center;padding:24px;
+}
+.hero-badge{
+  position:absolute;bottom:-20px;left:-20px;z-index:2;
+  width:92px;height:92px;border-radius:50%;
+  background:var(--paper);box-shadow:0 12px 28px rgba(51,59,51,.14);
+  display:flex;align-items:center;justify-content:center;
+}
+.blob{position:absolute;z-index:-1;border-radius:50%;background:var(--lemon)}
+
+.ticker{
+  border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);
+  padding:13px 0;overflow:hidden;white-space:nowrap;background:var(--paper);
+}
+.ticker-track{display:inline-block;animation:slide 30s linear infinite}
+.ticker span{
+  font-style:italic;font-weight:700;font-size:1.02rem;color:var(--ink);
+  margin:0 26px;letter-spacing:-0.01em;
+}
+.ticker .dot{color:var(--orange);font-style:normal}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- wavy band sections ---------- */
+.band{position:relative;padding:96px 0}
+.band.peach{background:var(--peach)}
+.band.butter{background:var(--butter)}
+.wave{display:block;width:100%;height:64px;margin-bottom:-1px}
+.wave.flip{transform:scaleY(-1);margin-bottom:0;margin-top:-1px}
+
+.section-head{max-width:640px;margin-bottom:52px}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.section-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:14px}
+.section-head p{color:var(--ink-soft);font-size:1.06rem}
+.kicker{
+  font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--teal-deep);display:block;margin-bottom:12px;
+}
+
+/* ---------- start here ---------- */
+.start-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.start-card{
+  background:var(--paper);border-radius:var(--radius-lg);
+  padding:34px 28px;position:relative;
+  transition:transform .25s,box-shadow .25s;
+}
+.start-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(51,59,51,.12)}
+.start-card .icon{
+  width:58px;height:58px;border-radius:18px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+}
+.start-card:nth-child(1) .icon{background:var(--butter)}
+.start-card:nth-child(2) .icon{background:var(--peach)}
+.start-card:nth-child(3) .icon{background:var(--aqua)}
+.start-card h3{font-size:1.3rem;margin-bottom:10px}
+.start-card p{color:var(--ink-soft);font-size:.97rem;margin-bottom:16px}
+.textlink{font-weight:700;text-decoration:none;color:var(--teal-deep)}
+.textlink:hover{text-decoration:underline}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.about-art{position:relative;display:flex;justify-content:center}
+.about-circle{
+  width:min(340px,80vw);aspect-ratio:1;border-radius:50%;
+  background:var(--butter);position:relative;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 18px 44px rgba(51,59,51,.1);
+}
+.about p{color:var(--ink-soft);margin-bottom:18px;font-size:1.04rem}
+.about h2{font-size:clamp(1.9rem,3.2vw,2.5rem);margin-bottom:20px}
+
+/* ---------- blog ---------- */
+.chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:48px}
+.chip{
+  border:2px solid var(--ink);background:var(--paper);color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:.87rem;
+  padding:8px 20px;border-radius:999px;cursor:pointer;
+  transition:background .2s,color .2s;
+}
+.chip:hover{background:var(--peach)}
+.chip.active{background:var(--ink);color:var(--paper)}
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.post{
+  background:var(--paper);border-radius:var(--radius-lg);overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .25s,box-shadow .25s;
+}
+.post:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(51,59,51,.14)}
+.post-thumb{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center}
+.post-body{padding:24px 26px 28px;display:flex;flex-direction:column;flex:1}
+.post-meta{
+  display:flex;gap:12px;align-items:center;
+  font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal-deep);margin-bottom:12px;
+}
+.post-meta .date{color:var(--ink-soft);letter-spacing:.04em;text-transform:none;font-weight:600}
+.post h3{font-size:1.22rem;margin-bottom:10px}
+.post h3 a{color:var(--ink);text-decoration:none}
+.post h3 a:hover{color:var(--teal-deep)}
+.post p{color:var(--ink-soft);font-size:.95rem;flex:1}
+.post .read{margin-top:18px;font-weight:700;color:var(--teal-deep);text-decoration:none;font-size:.92rem}
+.post .read:hover{text-decoration:underline}
+.post[hidden]{display:none}
+
+/* ---------- loving ---------- */
+.loving-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.loving-card{
+  border-radius:var(--radius-lg);padding:30px 28px;
+  position:relative;overflow:hidden;
+}
+.loving-card:nth-child(1){background:var(--butter)}
+.loving-card:nth-child(2){background:var(--peach)}
+.loving-card:nth-child(3){background:var(--aqua)}
+.loving-card .tag{
+  font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--teal-deep);display:block;margin-bottom:10px;
+}
+.loving-card h3{font-size:1.22rem;margin-bottom:8px}
+.loving-card p{color:var(--ink-soft);font-size:.94rem}
+
+/* ---------- footer ---------- */
+.footer{background:var(--butter);padding:90px 0 40px;text-align:center;position:relative}
+.footer h2{font-size:clamp(2.1rem,4.2vw,3rem);margin-bottom:16px}
+.footer .sub{color:var(--ink-soft);max-width:46ch;margin:0 auto 34px;font-size:1.06rem}
+.signup{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+.signup input{
+  font-family:Arial,Helvetica,sans-serif;font-size:1rem;
+  padding:13px 22px;border-radius:999px;border:2px solid var(--ink);
+  min-width:280px;background:var(--paper);color:var(--ink);
+}
+.signup input::placeholder{color:var(--ink-soft)}
+.foot-bottom{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  border-top:1.5px solid rgba(51,59,51,.2);padding-top:26px;
+  font-size:.9rem;color:var(--ink-soft);
+}
+.foot-bottom a{color:var(--ink);text-decoration:none;font-weight:700}
+.foot-bottom a:hover{color:var(--teal-deep)}
+
+/* ---------- reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .hero-grid,.about-grid{grid-template-columns:1fr;gap:44px}
+  .hero{padding:48px 0 80px}
+  .hero-badge{width:70px;height:70px}
+  .start-grid,.post-grid,.loving-grid{grid-template-columns:1fr 1fr}
+  .nav-links li.hide-m{display:none}
+}
+@media(max-width:600px){
+  .start-grid,.post-grid,.loving-grid{grid-template-columns:1fr}
+  .nav-links{gap:16px}
+  .band{padding:72px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .ticker-track{animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .post:hover,.start-card:hover,.btn:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="logo" href="#top" aria-label="Tinybits home">
+      <svg width="27" height="27" viewBox="0 0 27 27" fill="none" aria-hidden="true">
+        <ellipse cx="13.5" cy="16" rx="9" ry="7.5" fill="#F5D96E"/>
+        <circle cx="22" cy="14" r="2.4" fill="#F6B26B"/>
+        <path d="M13.5 8.5 C13 4.5 10 3 6.5 3.5 C7 7.5 10 9 13.5 8.5 Z" fill="#8CBF7F"/>
+      </svg>
+      Tinybits
+    </a>
+    <ul class="nav-links">
+      <li class="hide-m"><a href="#start">Start here</a></li>
+      <li class="hide-m"><a href="#about">About</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a class="btn" href="#hello" style="padding:10px 22px">Say hi</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="6" fill="#7FA868"/></svg>
+        A wellness blog from Ontario
+      </span>
+      <h1>Feel better, one <span class="swash">tiny bit</span> at a time.</h1>
+      <p class="lede">Tinybits is about small, doable habits that add up. Real food, honest movement, proper rest, and plenty of time outside. No overhauls, no guilt, just tiny bits done often.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#blog">Read the blog</a>
+        <a class="btn ghost" href="#start">New here? Start here</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="hero-photo">
+        <!-- SWAP: replace this placeholder div with your photo:
+             <img src="images/hero.jpg" alt="Fresh lemons on a bright table"> -->
+        <div class="hero-placeholder">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+            <rect x="6" y="12" width="40" height="32" rx="8" stroke="#4F7A3D" stroke-width="3"/>
+            <circle cx="26" cy="28" r="9" stroke="#4F7A3D" stroke-width="3"/>
+            <circle cx="39" cy="19" r="2.5" fill="#4F7A3D"/>
+          </svg>
+          Your lemon hero photo<br>goes here
+        </div>
+      </div>
+      <div class="hero-badge">
+        <svg width="52" height="52" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+          <ellipse cx="26" cy="30" rx="17" ry="14" fill="#F5D96E"/>
+          <circle cx="41" cy="26" r="4.5" fill="#F6B26B"/>
+          <path d="M26 16 C25 10 19 8 13 9 C14 15 19 18 26 16 Z" fill="#8CBF7F"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ticker -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>eat well</span><span class="dot">✿</span>
+    <span>move daily</span><span class="dot">✿</span>
+    <span>rest deeply</span><span class="dot">✿</span>
+    <span>grow something</span><span class="dot">✿</span>
+    <span>get outside</span><span class="dot">✿</span>
+    <span>eat well</span><span class="dot">✿</span>
+    <span>move daily</span><span class="dot">✿</span>
+    <span>rest deeply</span><span class="dot">✿</span>
+    <span>grow something</span><span class="dot">✿</span>
+    <span>get outside</span><span class="dot">✿</span>
+  </div>
+</div>
+
+<!-- ================= START HERE ================= -->
+<svg class="wave" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C240 0 480 64 720 36 C960 8 1200 56 1440 24 L1440 64 L0 64 Z" fill="#FDE4CB"/></svg>
+<section class="band peach" id="start" style="padding-top:56px">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="kicker">New here?</span>
+      <h2>Start with these three</h2>
+      <p>Tinybits is young and growing, like the lettuce on my windowsill. These are the best places to begin.</p>
+    </div>
+    <div class="start-grid">
+      <article class="start-card reveal">
+        <div class="icon">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 27 C7 22 3 16 3 11 C3 6 7 3 11 4.5 C13 5.2 14.3 6.6 15 8 C15.7 6.6 17 5.2 19 4.5 C23 3 27 6 27 11 C27 16 23 22 15 27 Z" fill="#7FA868"/></svg>
+        </div>
+        <h3>Why tiny bits work</h3>
+        <p>The whole philosophy in one short read. Why five minutes done daily beats the perfect plan you quit by Thursday.</p>
+        <a class="textlink" href="#blog">Read the post →</a>
+      </article>
+      <article class="start-card reveal">
+        <div class="icon">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="15" r="11" stroke="#7FA868" stroke-width="3"/><path d="M15 9 L15 15 L20 18" stroke="#7FA868" stroke-width="3" stroke-linecap="round"/></svg>
+        </div>
+        <h3>The 4x4 explained</h3>
+        <p>The Norwegian interval protocol I build my week around, translated into plain English for regular humans.</p>
+        <a class="textlink" href="#blog">Read the post →</a>
+      </article>
+      <article class="start-card reveal">
+        <div class="icon">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 3 C15 3 22 11 22 18 A7 7 0 1 1 8 18 C8 11 15 3 15 3 Z" fill="#7FA868"/></svg>
+        </div>
+        <h3>Hot, cold, repeat</h3>
+        <p>What sauna and cold water actually do for you, what the research says, and how to start gently.</p>
+        <a class="textlink" href="#blog">Read the post →</a>
+      </article>
+    </div>
+  </div>
+</section>
+<svg class="wave flip" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C240 0 480 64 720 36 C960 8 1200 56 1440 24 L1440 64 L0 64 Z" fill="#FDE4CB"/></svg>
+
+<!-- ================= ABOUT ================= -->
+<section class="band about" id="about" style="background:#fff">
+  <div class="wrap about-grid">
+    <div class="about-art reveal">
+      <span class="blob b1" style="width:120px;height:120px;top:-16px;left:6%;opacity:.85"></span>
+      <div class="about-circle">
+        <svg width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+          <ellipse cx="80" cy="96" rx="44" ry="36" fill="#F5D96E"/>
+          <ellipse cx="80" cy="96" rx="44" ry="36" stroke="#4F7A3D" stroke-width="3"/>
+          <circle cx="120" cy="86" r="7" fill="#F6B26B"/>
+          <path d="M80 60 C78 44 66 38 52 40 C54 54 66 62 80 60 Z" fill="#8CBF7F" stroke="#4F7A3D" stroke-width="2.5"/>
+          <path d="M80 60 C84 48 96 44 108 48 C104 60 92 64 80 60 Z" fill="#BDDBB1" stroke="#4F7A3D" stroke-width="2.5"/>
+          <ellipse cx="80" cy="140" rx="40" ry="7" fill="#4F7A3D" opacity=".18"/>
+        </svg>
+      </div>
+      <span class="blob b2" style="bottom:-10px;right:10%"></span>
+    </div>
+    <div class="reveal">
+      <span class="kicker">Hello, I'm Vicki</span>
+      <h2>Small habits.<br>Honest results.</h2>
+      <p>I spent years in a hospital lab watching what happens when health gets left too late. Tinybits is my answer to that: a place to share what I'm actually doing to feel strong and well, tested on myself first.</p>
+      <p>You'll find plant-forward recipes, simple training that fits real life, rest that isn't an afterthought, and a lot of encouragement to grow something and get outside. If it's here, I've tried it.</p>
+      <a class="btn" href="#blog">See what I'm into lately</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BLOG ================= -->
+<svg class="wave" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24 C240 56 480 8 720 36 C960 64 1200 0 1440 40 L1440 64 L0 64 Z" fill="#FBEFC7"/></svg>
+<section class="band butter" id="blog" style="padding-top:56px">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="kicker">The blog</span>
+      <h2>Fresh from Tinybits</h2>
+      <p>Little reads for a better week. Pick a topic or browse everything.</p>
+    </div>
+    <div class="chips reveal" role="tablist" aria-label="Filter posts by category">
+      <button class="chip active" data-cat="all">All</button>
+      <button class="chip" data-cat="eat">Eat</button>
+      <button class="chip" data-cat="move">Move</button>
+      <button class="chip" data-cat="rest">Rest</button>
+      <button class="chip" data-cat="grow">Grow</button>
+      <button class="chip" data-cat="outside">Outside</button>
+    </div>
+    <div class="post-grid">
+
+      <article class="post reveal" data-cat="eat">
+        <div class="post-thumb" style="background:var(--peach)">
+          <svg width="84" height="84" viewBox="0 0 84 84" fill="none" aria-hidden="true"><circle cx="42" cy="46" r="24" fill="#fff"/><path d="M42 46 m-24 0 a24 24 0 0 1 24 -24 L42 46 Z" fill="#F5D96E"/><path d="M42 22 C40 14 44 8 50 6 C52 13 48 20 42 22 Z" fill="#8CBF7F"/></svg>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>Eat</span><span class="date">Jul 2026</span></div>
+          <h3><a href="#">Five plant-forward keto dinners I actually repeat</a></h3>
+          <p>Low carb without the bacon overload. These are the weeknight meals that survived my testing and made it into rotation.</p>
+          <a class="read" href="#">Keep reading →</a>
+        </div>
+      </article>
+
+      <article class="post reveal" data-cat="move">
+        <div class="post-thumb" style="background:var(--butter)">
+          <svg width="84" height="84" viewBox="0 0 84 84" fill="none" aria-hidden="true"><path d="M14 60 L30 36 L44 50 L58 24 L70 60" stroke="#4F7A3D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="58" cy="24" r="6" fill="#F6B26B"/></svg>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>Move</span><span class="date">Jul 2026</span></div>
+          <h3><a href="#">The Norwegian 4x4, minus the intimidation</a></h3>
+          <p>Four minutes hard, three minutes easy, four times through. Why this simple protocol keeps showing up in longevity research.</p>
+          <a class="read" href="#">Keep reading →</a>
+        </div>
+      </article>
+
+      <article class="post reveal" data-cat="rest">
+        <div class="post-thumb" style="background:var(--aqua)">
+          <svg width="84" height="84" viewBox="0 0 84 84" fill="none" aria-hidden="true"><path d="M56 20 A24 24 0 1 0 68 52 A19 19 0 0 1 56 20 Z" fill="#fff"/><circle cx="26" cy="24" r="3" fill="#F5D96E"/><circle cx="20" cy="38" r="2" fill="#F5D96E"/></svg>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>Rest</span><span class="date">Jun 2026</span></div>
+          <h3><a href="#">Hot, cold, repeat: my sauna and cold routine</a></h3>
+          <p>What contrast therapy feels like as a beginner, what the science actually supports, and how to ease in without hating it.</p>
+          <a class="read" href="#">Keep reading →</a>
+        </div>
+      </article>
+
+      <article class="post reveal" data-cat="grow">
+        <div class="post-thumb" style="background:#fff">
+          <svg width="84" height="84" viewBox="0 0 84 84" fill="none" aria-hidden="true"><path d="M28 68 L56 68 L52 44 L32 44 Z" fill="#F6B26B"/><path d="M42 44 L42 26" stroke="#4F7A3D" stroke-width="4" stroke-linecap="round"/><path d="M42 34 C42 26 36 22 28 22 C28 30 34 34 42 34 Z" fill="#8CBF7F"/><path d="M42 30 C42 22 48 18 56 18 C56 26 50 30 42 30 Z" fill="#BDDBB1"/></svg>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>Grow</span><span class="date">Jun 2026</span></div>
+          <h3><a href="#">Lavender, lettuce, and learning patience</a></h3>
+          <p>Notes from my little herb and veggie garden, including everything I got wrong so you don't have to.</p>
+          <a class="read" href="#">Keep reading →</a>
+        </div>
+      </article>
+
+      <article class="post reveal" data-cat="outside">
+        <div class="post-thumb" style="background:var(--peach)">
+          <svg width="84" height="84" viewBox="0 0 84 84" fill="none" aria-hidden="true"><path d="M10 58 Q21 50 32 58 T54 58 T76 58" stroke="#4F7A3D" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M40 46 L58 40 L44 52 Z" fill="#F5D96E"/><path d="M46 40 L46 26" stroke="#4F7A3D" stroke-width="3" stroke-linecap="round"/></svg>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>Outside</span><span class="date">Jun 2026</span></div>
+          <h3><a href="#">Why paddleboarding is my favourite therapy</a></h3>
+          <p>Balance, quiet, and cold splashes. What an hour on the water does for a busy head, and how to get started cheaply.</p>
+          <a class="read" href="#">Keep reading →</a>
+        </div>
+      </article>
+
+      <article class="post reveal" data-cat="rest">
+        <div class="post-thumb" style="background:var(--butter)">
+          <svg width="84" height="84" viewBox="0 0 84 84" fill="none" aria-hidden="true"><rect x="18" y="30" width="48" height="30" rx="10" fill="#fff"/><circle cx="34" cy="45" r="4" fill="#7FA868"/><circle cx="50" cy="45" r="4" fill="#7FA868"/><path d="M30 22 C32 18 36 18 38 22" stroke="#4F7A3D" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M46 22 C48 18 52 18 54 22" stroke="#4F7A3D" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>Rest</span><span class="date">May 2026</span></div>
+          <h3><a href="#">Why tiny bits work</a></h3>
+          <p>The post that named this blog. On why small habits done daily quietly outperform every dramatic Monday reset.</p>
+          <a class="read" href="#">Keep reading →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+<svg class="wave flip" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24 C240 56 480 8 720 36 C960 64 1200 0 1440 40 L1440 64 L0 64 Z" fill="#FBEFC7"/></svg>
+
+<!-- ================= CURRENTLY LOVING ================= -->
+<section class="band" style="background:#fff;padding-top:60px">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker">Currently loving</span>
+      <h2>Tiny bits of the moment</h2>
+    </div>
+    <div class="loving-grid">
+      <div class="loving-card reveal">
+        <span class="tag">In the kitchen</span>
+        <h3>Lemon tahini everything</h3>
+        <p>One jar of sauce that makes roasted vegetables taste like effort was involved. Recipe coming to the blog soon.</p>
+      </div>
+      <div class="loving-card reveal">
+        <span class="tag">On the water</span>
+        <h3>Early morning paddles</h3>
+        <p>The lake before 8am is a different lake. Flat, quiet, and completely worth the alarm.</p>
+      </div>
+      <div class="loving-card reveal">
+        <span class="tag">In the garden</span>
+        <h3>First lavender harvest</h3>
+        <p>Drying bundles in the kitchen window. The whole house smells like a spa that charges too much.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<svg class="wave" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36 C240 4 480 60 720 32 C960 4 1200 60 1440 28 L1440 64 L0 64 Z" fill="#FBEFC7"/></svg>
+<footer class="footer" id="hello">
+  <div class="wrap">
+    <h2 class="reveal">Ready to grow?</h2>
+    <p class="sub reveal">Join the list for one tiny, useful email now and then. New posts, small habit ideas, and whatever the garden is doing.</p>
+    <form class="signup reveal" onsubmit="event.preventDefault();this.querySelector('input').value='';alert('Thanks! You are on the list.');">
+      <input type="email" placeholder="your@email.com" aria-label="Email address" required>
+      <button class="btn" type="submit">Sign me up</button>
+    </form>
+    <div class="foot-bottom">
+      <span>© 2026 Tinybits · Made with tiny bits of effort, daily</span>
+      <div style="display:flex;gap:20px">
+        <a href="#blog">Blog</a>
+        <a href="#about">About</a>
+        <a href="mailto:hello@tinybit.ca">hello@tinybit.ca</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// scroll reveal
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// blog filter chips
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    const cat=chip.dataset.cat;
+    document.querySelectorAll('.post').forEach(p=>{
+      p.hidden=!(cat==='all'||p.dataset.cat===cat);
+    });
+  });
+});
+</script>
+</body>
+</html>
